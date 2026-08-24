@@ -1,0 +1,19 @@
+[package]
+name = "fon-parser"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.85"
+license = "MIT"
+description = "A lossless, allocation-conscious parser for Fer Object Notation."
+repository = "https://github.com/Fuyeor/fon-parser"
+readme = "README.md"
+
+[features]
+default = []
+serde = ["dep:serde"]
+
+[dependencies]
+serde = { version = "1", default-features = false, features = [
+  "alloc",
+  "derive",
+], optional = true }
