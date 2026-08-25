@@ -15,6 +15,8 @@ pub mod ast;
 pub mod cst;
 pub mod format;
 pub mod hir;
+#[cfg(feature = "json")]
+pub mod json;
 pub mod scheme;
 
 pub use ast::{
@@ -27,6 +29,11 @@ pub use ast::{
 pub use diagnostic::Diagnostic;
 pub use format::{format_canonical, reprint_lossless};
 pub use hir::{TypedDocument, TypedMember, TypedRoot, TypedValue};
+#[cfg(feature = "json")]
+pub use json::{
+    JsonConversionError, SchemaDescriptor, SchemaFieldDescriptor, SchemaVariantDescriptor,
+    parse_to_json_value, to_json_string,
+};
 pub use resolve::{ResolveResult, resolve};
 pub use scheme::{SchemeError, SchemeResolver, TypeReference, TypedAtom};
 pub use span::Span;
