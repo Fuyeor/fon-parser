@@ -9,4 +9,7 @@ fn public_trees_implement_serde_traits() {
     assert_serde::<fon_parser::SyntaxTree>();
     assert_serde::<fon_parser::TypedDocument>();
     assert_serde::<fon_parser::Diagnostic>();
+    assert_serde::<fon_parser::ExpressionValue>();
+    assert_serde::<fon_parser::QuantifierKind>();
+    assert_serde::<fon_parser::ComparisonOperator>();
 }

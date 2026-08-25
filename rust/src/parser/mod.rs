@@ -10,6 +10,7 @@ use crate::span::Span;
 use crate::token::{Token, TokenKind, Trivia};
 
 pub mod document;
+pub mod expressions;
 pub mod types;
 pub mod values;
 
@@ -79,10 +80,20 @@ impl<'source> Parser<'source> {
         }
     }
 
-    pub(crate) fn skip_separators(&mut self) {
+    pub(crate) fn skip_separators(&mut self) -> bool {
+        let mut consumed = false;
         while matches!(self.current_kind(), TokenKind::Newline | TokenKind::Comma) {
+            consumed = true;
             self.advance();
         }
+        consumed
+    }
+
+    pub(crate) fn peek_kind(&self, offset: usize) -> TokenKind {
+        self.tokens
+            .get(self.position.saturating_add(offset))
+            .map(|token| token.kind)
+            .unwrap_or(TokenKind::Eof)
     }
 
     pub(crate) fn expect(&mut self, kind: TokenKind, code: &'static str, message: &str) -> Token {

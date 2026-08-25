@@ -33,14 +33,13 @@ impl<'source> Parser<'source> {
                     self.skip_separators();
                     while !matches!(self.current_kind(), TokenKind::GreaterThan | TokenKind::Eof) {
                         arguments.push(self.parse_type());
-                        self.skip_separators();
-                        if self.eat(TokenKind::Comma).is_none()
+                        if !self.skip_separators()
                             && !self.at(TokenKind::GreaterThan)
                             && !self.at(TokenKind::Eof)
                         {
                             self.diagnostics.push(Diagnostic::new(
                                 "E0401",
-                                "expected ',' or '>' in generic type",
+                                "expected separator or '>' in generic type",
                                 self.current_span(),
                             ));
                             break;
@@ -239,6 +238,10 @@ impl<'source> Parser<'source> {
             | Some(Value::Object(crate::ast::ObjectValue { span, .. }))
             | Some(Value::Schema(crate::ast::SchemaValue { span, .. }))
             | Some(Value::Unknown(crate::ast::UnknownValue { span, .. }))
+            | Some(Value::Expression(crate::ast::ExpressionValue::Unary { span, .. }))
+            | Some(Value::Expression(crate::ast::ExpressionValue::Comparison { span, .. }))
+            | Some(Value::Expression(crate::ast::ExpressionValue::Group { span, .. }))
+            | Some(Value::Expression(crate::ast::ExpressionValue::Quantifier { span, .. }))
             | Some(Value::Error(crate::ast::ErrorNode { span, .. })) => span.end,
             None => self.current_span().end,
         }

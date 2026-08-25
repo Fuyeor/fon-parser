@@ -87,6 +87,7 @@ impl<'source> Lexer<'source> {
             '<' => self.push_simple(TokenKind::LessThan, 1),
             '>' => self.push_simple(TokenKind::GreaterThan, 1),
             '=' => self.push_simple(TokenKind::Equals, 1),
+            '!' => self.push_simple(TokenKind::Bang, 1),
             '+' if self.peek_byte(1).is_some_and(|byte| byte.is_ascii_digit()) => self.lex_number(),
             '+' => self.push_simple(TokenKind::Plus, 1),
             '-' if self.peek_byte(1).is_some_and(|byte| byte.is_ascii_digit()) => self.lex_number(),
@@ -334,6 +335,6 @@ fn is_atom_boundary(next_char: char) -> bool {
     next_char.is_whitespace()
         || matches!(
             next_char,
-            ',' | '}' | ']' | '{' | '[' | '(' | ')' | ':' | '=' | '`'
+            ',' | '}' | ']' | '{' | '[' | '(' | ')' | ':' | '=' | '<' | '>' | '!' | '`'
         )
 }

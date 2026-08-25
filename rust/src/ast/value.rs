@@ -19,6 +19,7 @@ pub enum Value {
     Object(ObjectValue),
     Schema(SchemaValue),
     Unknown(UnknownValue),
+    Expression(ExpressionValue),
     Error(super::ErrorNode),
 }
 
@@ -36,6 +37,7 @@ impl Value {
             Self::Object(_) => ValueKind::Object,
             Self::Schema(_) => ValueKind::Schema,
             Self::Unknown(_) => ValueKind::Unknown,
+            Self::Expression(_) => ValueKind::Expression,
             Self::Error(_) => ValueKind::Error,
         }
     }
@@ -53,7 +55,78 @@ pub enum ValueKind {
     Object,
     Schema,
     Unknown,
+    Expression,
     Error,
+}
+
+/// A parsed Fer expression retained inside a value slot.
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[derive(Debug, Clone)]
+pub enum ExpressionValue {
+    Unary {
+        operator: UnaryOperator,
+        operand: ValueId,
+        span: Span,
+    },
+    Comparison {
+        left: ValueId,
+        operator: ComparisonOperator,
+        right: ValueId,
+        span: Span,
+    },
+    Group {
+        expression: ValueId,
+        span: Span,
+    },
+    Quantifier {
+        kind: QuantifierKind,
+        conditions: Vec<ValueId>,
+        span: Span,
+    },
+}
+
+impl ExpressionValue {
+    pub fn span(&self) -> Span {
+        match self {
+            Self::Unary { span, .. }
+            | Self::Comparison { span, .. }
+            | Self::Group { span, .. }
+            | Self::Quantifier { span, .. } => *span,
+        }
+    }
+}
+
+/// A unary condition operator defined by Fer expressions.
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum UnaryOperator {
+    Not,
+}
+
+/// A comparison operator defined by Fer condition expressions.
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum ComparisonOperator {
+    Less,
+    LessEqual,
+    Greater,
+    GreaterEqual,
+    Equals,
+    Contains,
+    In,
+    Matches,
+    Starts,
+    Ends,
+}
+
+/// A logical quantifier that combines condition expressions.
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum QuantifierKind {
+    All,
+    Any,
+    One,
+    None,
 }
 
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]

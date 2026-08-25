@@ -15,8 +15,9 @@ pub use annotation::{Annotation, AnnotationArgument};
 pub use schema::{EnumVariant, Schema, SchemaKind, StructField};
 pub use types::{TypeExpr, TypeKind};
 pub use value::{
-    ArrayValue, AstValue, EnumValue, EnumValueKind, ObjectValue, RegexValue, SchemaValue,
-    StringPart, StringPartKind, StringValue, UnknownShape, UnknownValue, Value, ValueKind,
+    ArrayValue, AstValue, ComparisonOperator, EnumValue, EnumValueKind, ExpressionValue,
+    ObjectValue, QuantifierKind, RegexValue, SchemaValue, StringPart, StringPartKind, StringValue,
+    UnaryOperator, UnknownShape, UnknownValue, Value, ValueKind,
 };
 
 macro_rules! define_id {
@@ -111,6 +112,7 @@ pub enum CstNodeKind {
     TypeDeclaration,
     Value,
     Annotation,
+    Expression,
     Error,
 }
 
@@ -179,6 +181,11 @@ impl Ast {
             .get(id.0 as usize)
             .map(TypeExpr::kind)
             .unwrap_or(TypeKind::Error)
+    }
+
+    /// Return a parsed type expression by its stable AST identifier.
+    pub fn type_expr(&self, id: TypeId) -> Option<&TypeExpr> {
+        self.types.get(id.0 as usize)
     }
 
     pub fn schema(&self, id: SchemaId) -> Option<&Schema> {
