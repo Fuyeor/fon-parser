@@ -14,6 +14,10 @@ use crate::token::TokenKind;
 
 impl<'source> Parser<'source> {
     pub(crate) fn parse_value(&mut self) -> crate::ast::ValueId {
+        self.parse_condition_expression()
+    }
+
+    pub(crate) fn parse_value_atom(&mut self) -> crate::ast::ValueId {
         match self.current_kind() {
             TokenKind::True => self.parse_boolean(true),
             TokenKind::False => self.parse_boolean(false),
@@ -251,7 +255,7 @@ impl<'source> Parser<'source> {
         }))
     }
 
-    fn parse_error_value(&mut self, message: &str) -> crate::ast::ValueId {
+    pub(crate) fn parse_error_value(&mut self, message: &str) -> crate::ast::ValueId {
         let span = self.current_span();
         self.diagnostics
             .push(Diagnostic::new("E0106", message, span));

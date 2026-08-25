@@ -56,6 +56,31 @@ fn parses_builtin_named_and_generic_types() {
 }
 
 #[test]
+fn accepts_mixed_separators_in_generic_arguments() {
+    let result = parse("value: Triple<First, Second\n  Third> = item\n");
+
+    assert!(
+        !result.has_errors(),
+        "unexpected diagnostics: {:?}",
+        result.diagnostics
+    );
+    let binding = result
+        .document
+        .ast
+        .member(result.document.ast.object_members().expect("object root")[0])
+        .expect("binding member")
+        .binding()
+        .expect("binding");
+    let type_id = binding.type_annotation.expect("generic type");
+    let fon_parser::TypeExpr::Generic { arguments, .. } =
+        result.document.ast.type_expr(type_id).expect("type")
+    else {
+        panic!("expected generic type");
+    };
+    assert_eq!(arguments.len(), 3);
+}
+
+#[test]
 fn parses_struct_fields_with_required_inferred_and_typed_defaults() {
     let result = parse("User: struct { id: Uuid4 nickname = `guest` score: i32 = 100 }\n");
 

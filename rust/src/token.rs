@@ -27,6 +27,7 @@ pub enum TokenKind {
     Plus,
     Minus,
     Slash,
+    Bang,
     LBrace,
     RBrace,
     LBracket,

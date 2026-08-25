@@ -1,6 +1,9 @@
 // fon-parser/src/format.rs
 
-use crate::ast::{Ast, Document, Member, Root, TypeExpr, Value};
+use crate::ast::{
+    Ast, ComparisonOperator, Document, ExpressionValue, Member, QuantifierKind, Root, TypeExpr,
+    Value,
+};
 use alloc::string::String;
 
 /// Reprint the exact source owned by the parsed document.
@@ -122,11 +125,92 @@ fn render_value(ast: &Ast, value_id: crate::ast::ValueId, level: usize, output: 
                 render_schema(ast, schema, level, output);
             }
         }
+        Value::Expression(expression) => render_expression(ast, expression, level, output),
         Value::Error(error) => {
             output.push_str("/* ");
             output.push_str(error.message.as_str());
             output.push_str(" */");
         }
+    }
+}
+
+// Render expressions in a stable canonical form without changing lossless source replay.
+fn render_expression(ast: &Ast, expression: &ExpressionValue, level: usize, output: &mut String) {
+    match expression {
+        ExpressionValue::Unary {
+            operator: crate::ast::UnaryOperator::Not,
+            operand,
+            ..
+        } => {
+            if matches!(
+                ast.value(*operand),
+                Some(Value::Expression(ExpressionValue::Group { .. }))
+            ) {
+                output.push_str("not ");
+                render_value(ast, *operand, level, output);
+            } else {
+                output.push_str("not (");
+                render_value(ast, *operand, level, output);
+                output.push(')');
+            }
+        }
+        ExpressionValue::Group { expression, .. } => {
+            output.push('(');
+            render_value(ast, *expression, level, output);
+            output.push(')');
+        }
+        ExpressionValue::Comparison {
+            left,
+            operator,
+            right,
+            ..
+        } => {
+            render_value(ast, *left, level, output);
+            output.push(' ');
+            output.push_str(comparison_text(*operator));
+            output.push(' ');
+            render_value(ast, *right, level, output);
+        }
+        ExpressionValue::Quantifier {
+            kind, conditions, ..
+        } => {
+            output.push_str(quantifier_text(*kind));
+            output.push_str(" (");
+            for condition in conditions {
+                output.push('\n');
+                write_indent(level + 1, output);
+                render_value(ast, *condition, level + 1, output);
+            }
+            if !conditions.is_empty() {
+                output.push('\n');
+                write_indent(level, output);
+            }
+            output.push(')');
+        }
+    }
+}
+
+fn comparison_text(operator: ComparisonOperator) -> &'static str {
+    match operator {
+        ComparisonOperator::Less => "<",
+        ComparisonOperator::LessEqual => "<=",
+        ComparisonOperator::Greater => ">",
+        ComparisonOperator::GreaterEqual => ">=",
+        ComparisonOperator::Equals => "equals",
+        ComparisonOperator::Contains => "contains",
+        ComparisonOperator::In => "in",
+        ComparisonOperator::Matches => "matches",
+        ComparisonOperator::Starts => "starts",
+        ComparisonOperator::Ends => "ends",
+    }
+}
+
+fn quantifier_text(kind: QuantifierKind) -> &'static str {
+    match kind {
+        QuantifierKind::All => "all",
+        QuantifierKind::Any => "any",
+        QuantifierKind::One => "one",
+        QuantifierKind::None => "none",
     }
 }
 

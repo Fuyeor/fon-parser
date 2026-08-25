@@ -165,6 +165,10 @@ impl<'document, 'resolver> ResolverContext<'document, 'resolver> {
                     }
                 }
             },
+            Value::Expression(expression) => TypedValue::Error {
+                message: format_expression_error(expression),
+                span: expression.span(),
+            },
             Value::Error(error) => TypedValue::Error {
                 message: error.message.clone(),
                 span: error.span,
@@ -221,6 +225,20 @@ fn member_span(member: &Member) -> crate::Span {
         Member::Binding(binding) => binding.span,
         Member::TypeDeclaration(declaration) => declaration.span,
         Member::Error(error) => error.span,
+    }
+}
+
+// Report expression values until semantic evaluation is provided by a higher compiler layer.
+fn format_expression_error(expression: &crate::ExpressionValue) -> String {
+    match expression {
+        crate::ExpressionValue::Unary { .. } => String::from("unresolved unary expression"),
+        crate::ExpressionValue::Comparison { .. } => {
+            String::from("unresolved comparison expression")
+        }
+        crate::ExpressionValue::Group { .. } => String::from("unresolved grouped expression"),
+        crate::ExpressionValue::Quantifier { .. } => {
+            String::from("unresolved quantifier expression")
+        }
     }
 }
 

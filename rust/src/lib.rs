@@ -20,11 +20,12 @@ pub mod json;
 pub mod scheme;
 
 pub use ast::{
-    Annotation, AnnotationArgument, ArrayValue, Ast, AstValue, Binding, CstNode, CstNodeKind,
-    Document, EnumValue, EnumValueKind, EnumVariant, ErrorNode, Key, Member, MemberId, NodeId,
-    ObjectValue, ParseResult, RegexValue, Root, RootKind, Schema, SchemaId, SchemaKind,
-    SchemaValue, StringPart, StringPartKind, StringValue, StructField, SyntaxTree, TypeDeclaration,
-    TypeExpr, TypeId, TypeKind, UnknownShape, UnknownValue, Value, ValueId, ValueKind,
+    Annotation, AnnotationArgument, ArrayValue, Ast, AstValue, Binding, ComparisonOperator,
+    CstNode, CstNodeKind, Document, EnumValue, EnumValueKind, EnumVariant, ErrorNode,
+    ExpressionValue, Key, Member, MemberId, NodeId, ObjectValue, ParseResult, QuantifierKind,
+    RegexValue, Root, RootKind, Schema, SchemaId, SchemaKind, SchemaValue, StringPart,
+    StringPartKind, StringValue, SyntaxTree, TypeDeclaration, TypeExpr, TypeId, TypeKind,
+    UnaryOperator, UnknownShape, UnknownValue, Value, ValueId, ValueKind,
 };
 pub use diagnostic::Diagnostic;
 pub use format::{format_canonical, reprint_lossless};
