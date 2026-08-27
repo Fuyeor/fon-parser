@@ -16,15 +16,17 @@
   },
   "files": [
     "dist",
-    "LICENSE",
     "README.md"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test": "vitest run",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "devDependencies": {
+    "prettier": "^3.9.6",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
   }

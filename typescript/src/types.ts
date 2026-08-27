@@ -38,7 +38,7 @@ export interface Token {
   readonly hasNewline: boolean;
 }
 
-export type DiagnosticSeverity = "error" | "warning";
+export type DiagnosticSeverity = 'error' | 'warning';
 
 export interface Diagnostic {
   readonly code: string;
@@ -81,24 +81,24 @@ export interface RootBase {
 }
 
 export interface ImplicitObjectRoot extends RootBase {
-  readonly kind: "implicit-object";
+  readonly kind: 'implicit-object';
   readonly members: readonly MemberId[];
 }
 
 export interface ExplicitObjectRoot extends RootBase {
-  readonly kind: "explicit-object";
+  readonly kind: 'explicit-object';
   readonly members: readonly MemberId[];
 }
 
 export interface ArrayRoot extends RootBase {
-  readonly kind: "array";
+  readonly kind: 'array';
   readonly items: readonly ValueId[];
 }
 
 export type Root = ImplicitObjectRoot | ExplicitObjectRoot | ArrayRoot;
 
 export interface BindingMember {
-  readonly kind: "binding";
+  readonly kind: 'binding';
   readonly annotations: readonly AnnotationId[];
   readonly key: Key;
   readonly typeAnnotation: TypeId | null;
@@ -107,7 +107,7 @@ export interface BindingMember {
 }
 
 export interface TypeDeclarationMember {
-  readonly kind: "type-declaration";
+  readonly kind: 'type-declaration';
   readonly annotations: readonly AnnotationId[];
   readonly key: Key;
   readonly schema: TypeId;
@@ -115,7 +115,7 @@ export interface TypeDeclarationMember {
 }
 
 export interface ErrorMember {
-  readonly kind: "error-member";
+  readonly kind: 'error-member';
   readonly annotations: readonly AnnotationId[];
   readonly span: Span;
 }
@@ -123,25 +123,25 @@ export interface ErrorMember {
 export type Member = BindingMember | TypeDeclarationMember | ErrorMember;
 
 export interface BooleanValue {
-  readonly kind: "boolean";
+  readonly kind: 'boolean';
   readonly value: boolean;
   readonly span: Span;
 }
 
 export interface NumberValue {
-  readonly kind: "number";
+  readonly kind: 'number';
   readonly raw: Span;
   readonly integer: boolean;
   readonly span: Span;
 }
 
 export interface StringTextPart {
-  readonly kind: "text";
+  readonly kind: 'text';
   readonly span: Span;
 }
 
 export interface StringInterpolationPart {
-  readonly kind: "interpolation";
+  readonly kind: 'interpolation';
   readonly span: Span;
   readonly expression: Span;
 }
@@ -149,40 +149,40 @@ export interface StringInterpolationPart {
 export type StringPart = StringTextPart | StringInterpolationPart;
 
 export interface StringValue {
-  readonly kind: "string";
+  readonly kind: 'string';
   readonly raw: Span;
   readonly parts: readonly StringPart[];
   readonly span: Span;
 }
 
 export interface RegexValue {
-  readonly kind: "regex";
+  readonly kind: 'regex';
   readonly pattern: Span;
   readonly flags: Span;
   readonly span: Span;
 }
 
 export interface EnumPathValue {
-  readonly kind: "enum-path";
+  readonly kind: 'enum-path';
   readonly shorthand: boolean;
   readonly segments: readonly Span[];
   readonly span: Span;
 }
 
 export interface ArrayValue {
-  readonly kind: "array";
+  readonly kind: 'array';
   readonly items: readonly ValueId[];
   readonly span: Span;
 }
 
 export interface ObjectValue {
-  readonly kind: "object";
+  readonly kind: 'object';
   readonly explicit: boolean;
   readonly members: readonly MemberId[];
   readonly span: Span;
 }
 
-export type SchemaKind = "struct" | "enum";
+export type SchemaKind = 'struct' | 'enum';
 
 export interface StructField {
   readonly annotations: readonly AnnotationId[];
@@ -200,7 +200,7 @@ export interface EnumVariant {
 }
 
 export interface SchemaValue {
-  readonly kind: "schema";
+  readonly kind: 'schema';
   readonly schemaKind: SchemaKind;
   readonly fields: readonly StructField[];
   readonly variants: readonly EnumVariant[];
@@ -208,22 +208,22 @@ export interface SchemaValue {
 }
 
 export type UnknownShape =
-  | "bare-atom"
-  | "package-like"
-  | "path-like"
-  | "version-like"
-  | "color-like"
-  | "other";
+  | 'bare-atom'
+  | 'package-like'
+  | 'path-like'
+  | 'version-like'
+  | 'color-like'
+  | 'other';
 
 export interface UnknownValue {
-  readonly kind: "unknown";
+  readonly kind: 'unknown';
   readonly raw: Span;
   readonly shape: UnknownShape;
   readonly span: Span;
 }
 
 export interface ErrorValue {
-  readonly kind: "error";
+  readonly kind: 'error';
   readonly code: string;
   readonly span: Span;
 }
@@ -241,27 +241,27 @@ export type Value =
   | ErrorValue;
 
 export interface NamedType {
-  readonly kind: "named";
+  readonly kind: 'named';
   readonly name: Span;
   readonly builtin: boolean;
   readonly span: Span;
 }
 
 export interface GenericType {
-  readonly kind: "generic";
+  readonly kind: 'generic';
   readonly name: Span;
   readonly arguments: readonly TypeId[];
   readonly span: Span;
 }
 
 export interface SchemaType {
-  readonly kind: "schema";
+  readonly kind: 'schema';
   readonly schema: ValueId;
   readonly span: Span;
 }
 
 export interface ErrorType {
-  readonly kind: "error-type";
+  readonly kind: 'error-type';
   readonly code: string;
   readonly span: Span;
 }
@@ -309,7 +309,9 @@ export class ParseResult {
   }
 
   public hasErrors(): boolean {
-    return this.document.diagnostics.some((diagnostic) => diagnostic.severity === "error");
+    return this.document.diagnostics.some(
+      (diagnostic) => diagnostic.severity === 'error',
+    );
   }
 }
 
