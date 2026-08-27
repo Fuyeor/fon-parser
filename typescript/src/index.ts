@@ -1,7 +1,13 @@
-// src/index.ts
+// typescript/src/index.ts
 
 import { lex } from './lexer.js';
 import { parseSource } from './parser.js';
+import { rawAtom, stringify } from './serializer.js';
+import type {
+  RawAtom,
+  StringifyFormat,
+  StringifyOptions,
+} from './serializer.js';
 import {
   Ast,
   defaultParseOptions,
@@ -21,6 +27,12 @@ import {
 
 export * from './types.js';
 export { lex } from './lexer.js';
+export { rawAtom, stringify } from './serializer.js';
+export type {
+  RawAtom,
+  StringifyFormat,
+  StringifyOptions,
+} from './serializer.js';
 
 /** Parses UTF-16 JavaScript text without I/O, evaluation, or runtime dependencies. */
 export function parse(
@@ -88,6 +100,9 @@ function decodeUtf8(source: Uint8Array): string {
   }
   return output;
 }
+
+/** Provides an optional namespace-style facade over the stateless named exports. */
+export const FON = Object.freeze({ parse, parseBytes, stringify, rawAtom });
 
 /** Reprints the exact source retained by the lossless syntax tree. */
 export function reprintLossless(document: Document): string {

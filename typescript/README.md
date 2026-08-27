@@ -19,12 +19,17 @@ pnpm run build
 pnpm test
 ```
 
-The published runtime surface is emitted to `dist/`. Only TypeScript and Vitest are development dependencies; the generated package has no runtime dependency graph.
+The published runtime surface is emitted to `dist/`. TypeScript, Vitest, and Prettier are development-only dependencies; the generated package has no runtime dependency graph.
 
 ## Basic usage
 
 ```ts
-import { formatCanonical, parse, reprintLossless, text } from 'fon-parser';
+import {
+  formatCanonical,
+  parse,
+  reprintLossless,
+  text,
+} from '@fuyeor/fon-parser';
 
 const result = parse(`name = \`Fuyeor\`
 version = 1.0.0
@@ -51,10 +56,44 @@ if (result.hasErrors()) {
 `parse()` accepts a JavaScript string and returns a `ParseResult`. `parseBytes()` accepts UTF-8 bytes and rejects malformed sequences instead of silently replacing them. Both functions are pure with respect to external state and retain source spans for diagnostics and tooling.
 
 ```ts
-import { parseBytes } from 'fon-parser';
+import { parseBytes } from '@fuyeor/fon-parser';
 
 const source = new TextEncoder().encode('enabled = true');
 const result = parseBytes(source);
+```
+
+## Serialize JavaScript values
+
+`stringify()` is the functional serializer for ordinary JavaScript values. It uses `pretty` by default and emits an implicit FON object at the root. Use `format: 'compact'` for production output without optional whitespace.
+
+```ts
+import { rawAtom, stringify } from '@fuyeor/fon-parser';
+
+const value = {
+  name: 'Fuyeor',
+  version: rawAtom('0.0.1'),
+  dependencies: { xxx: rawAtom('yyy') },
+};
+
+stringify(value);
+// name = `Fuyeor`
+// version = 0.0.1
+// dependencies = {
+//   xxx = yyy
+// }
+
+stringify(value, { format: 'compact' });
+// name=`Fuyeor`,version=0.0.1,dependencies={xxx=yyy}
+```
+
+JavaScript strings are always encoded as backtick strings. FON atoms such as package references, versions, paths, colors, and enum paths must be marked explicitly with `rawAtom()` so serialization never guesses semantic meaning from an ordinary string. `null`, `undefined`, non-finite numbers, functions, symbols, accessors, non-plain objects, sparse arrays, and circular data are rejected.
+
+The optional namespace facade is also available when a grouped API is preferred:
+
+```ts
+import { FON } from '@fuyeor/fon-parser';
+
+const result = FON.parse(FON.stringify({ enabled: true }));
 ```
 
 ## Public API
@@ -63,6 +102,9 @@ const result = parseBytes(source);
 | ------------------------------------- | -------------------------------------------------------- |
 | `parse(source, options?)`             | Parse a JavaScript string into a source-backed document. |
 | `parseBytes(source, options?)`        | Strictly decode UTF-8 bytes and parse them.              |
+| `stringify(value, options?)`          | Serialize JavaScript data as pretty or compact FON.      |
+| `rawAtom(raw)`                        | Mark a string as an explicit FON atom.                   |
+| `FON`                                 | Optional namespace facade for the stateless API.         |
 | `lex(source, options?)`               | Inspect the lossless token stream and lexer diagnostics. |
 | `reprintLossless(document)`           | Return the exact original source text.                   |
 | `formatCanonical(document, options?)` | Emit deterministic normalized formatting.                |

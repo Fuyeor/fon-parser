@@ -1,4 +1,4 @@
-// src/types.ts
+// typescript/src/types.ts
 
 /** A half-open UTF-16 source range used by every syntax node. */
 export interface Span {

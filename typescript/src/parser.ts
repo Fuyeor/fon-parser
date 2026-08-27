@@ -1,4 +1,4 @@
-// src/parser.ts
+// typescript/src/parser.ts
 
 import { lex } from './lexer.js';
 import {

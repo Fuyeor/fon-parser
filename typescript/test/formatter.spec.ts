@@ -1,4 +1,4 @@
-// test/formatter.spec.ts
+// typescript/test/formatter.spec.ts
 
 import { describe, expect, it } from 'vitest';
 import { formatCanonical, parse, reprintLossless, text } from '../src/index.js';

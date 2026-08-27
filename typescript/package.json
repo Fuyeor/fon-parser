@@ -1,5 +1,5 @@
 {
-  "name": "fon-parser",
+  "name": "@fuyeor/fon-parser",
   "version": "0.1.0",
   "description": "A dependency-free native TypeScript parser for Fer Object Notation.",
   "license": "MIT",

@@ -1,4 +1,4 @@
-// src/lexer.ts
+// typescript/src/lexer.ts
 
 import {
   defaultParseOptions,

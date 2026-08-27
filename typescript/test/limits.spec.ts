@@ -1,4 +1,4 @@
-// test/limits.spec.ts
+// typescript/test/limits.spec.ts
 
 import { describe, expect, it } from 'vitest';
 import { parse, parseBytes } from '../src/index.js';

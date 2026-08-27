@@ -1,4 +1,4 @@
-// test/parser.spec.ts
+// typescript/test/parser.spec.ts
 
 import { describe, expect, it } from 'vitest';
 import { parse, parseBytes, text, visit } from '../src/index.js';
