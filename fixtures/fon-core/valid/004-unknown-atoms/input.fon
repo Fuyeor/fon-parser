@@ -1,0 +1,9 @@
+{
+  package = @fer/std
+  version = 0.1.0
+  range = ^0.1.0
+  path = ./docs/index.md
+  color = #AEA4E4
+  license = mit
+  mode = .dark
+}

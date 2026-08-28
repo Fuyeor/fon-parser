@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "profile": "fon-core",
+  "cases": [
+    {
+      "id": "001-roots",
+      "kind": "valid",
+      "path": "valid/001-roots",
+      "specRef": "fon/syntax#root-forms"
+    },
+    {
+      "id": "002-separators",
+      "kind": "valid",
+      "path": "valid/002-separators",
+      "specRef": "fon/syntax#basic-rules"
+    },
+    {
+      "id": "003-literals",
+      "kind": "valid",
+      "path": "valid/003-literals",
+      "specRef": "fon/syntax#strings-and-atomic-values"
+    },
+    {
+      "id": "004-unknown-atoms",
+      "kind": "valid",
+      "path": "valid/004-unknown-atoms",
+      "specRef": "fon/syntax#atomic-values"
+    },
+    {
+      "id": "005-nested-values",
+      "kind": "valid",
+      "path": "valid/005-nested-values",
+      "specRef": "fon/syntax#objects-and-arrays"
+    },
+    {
+      "id": "006-schemas",
+      "kind": "valid",
+      "path": "valid/006-schemas",
+      "specRef": "fon/syntax#types-and-schemas"
+    },
+    {
+      "id": "007-annotations",
+      "kind": "valid",
+      "path": "valid/007-annotations",
+      "specRef": "fon/syntax#annotations"
+    },
+    {
+      "id": "008-duplicates",
+      "kind": "valid",
+      "path": "valid/008-duplicates",
+      "specRef": "fon/syntax#objects"
+    },
+    {
+      "id": "009-implicit-root",
+      "kind": "valid",
+      "path": "valid/009-implicit-root",
+      "specRef": "fon/syntax#root-forms"
+    },
+    {
+      "id": "010-top-level-array",
+      "kind": "valid",
+      "path": "valid/010-top-level-array",
+      "specRef": "fon/syntax#arrays"
+    },
+    {
+      "id": "011-interpolation",
+      "kind": "valid",
+      "path": "valid/011-interpolation",
+      "specRef": "fon/syntax#strings"
+    },
+    {
+      "id": "101-missing-value",
+      "kind": "invalid",
+      "path": "invalid/101-missing-value",
+      "errorCategory": "missing-value",
+      "specRef": "fon/grammar#error-recovery"
+    },
+    {
+      "id": "102-unclosed-delimiter",
+      "kind": "invalid",
+      "path": "invalid/102-unclosed-delimiter",
+      "errorCategory": "unclosed-delimiter",
+      "specRef": "fon/grammar#error-recovery"
+    },
+    {
+      "id": "103-invalid-separator",
+      "kind": "invalid",
+      "path": "invalid/103-invalid-separator",
+      "errorCategory": "missing-separator",
+      "specRef": "fon/grammar#error-recovery"
+    },
+    {
+      "id": "201-depth",
+      "kind": "limit",
+      "path": "limits/201-depth",
+      "errorCategory": "resource-limit",
+      "limits": { "maxDepth": 2 },
+      "specRef": "fon/grammar#resource-limits"
+    }
+  ]
+}

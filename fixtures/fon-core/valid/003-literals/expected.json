@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "lossless": true,
+  "projection": {
+    "root": {
+      "kind": "explicit-object",
+      "annotations": [],
+      "members": [
+        {
+          "kind": "binding",
+          "key": "enabled",
+          "annotations": [],
+          "value": { "kind": "boolean", "value": true }
+        },
+        {
+          "kind": "binding",
+          "key": "disabled",
+          "annotations": [],
+          "value": { "kind": "boolean", "value": false }
+        },
+        {
+          "kind": "binding",
+          "key": "integer",
+          "annotations": [],
+          "value": { "kind": "number", "raw": "-42", "integer": true }
+        },
+        {
+          "kind": "binding",
+          "key": "decimal",
+          "annotations": [],
+          "value": { "kind": "number", "raw": "2.5", "integer": false }
+        },
+        {
+          "kind": "binding",
+          "key": "text",
+          "annotations": [],
+          "value": {
+            "kind": "string",
+            "raw": "`line\\nvalue`",
+            "parts": [{ "kind": "text", "text": "line\\nvalue" }]
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "escaped",
+          "annotations": [],
+          "value": {
+            "kind": "string",
+            "raw": "`backtick: \\` and slash: \\\\`",
+            "parts": [
+              { "kind": "text", "text": "backtick: \\` and slash: \\\\" }
+            ]
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "identifier",
+          "annotations": [],
+          "value": {
+            "kind": "regex",
+            "pattern": "^[a-z0-9-]+$",
+            "flags": "i"
+          }
+        }
+      ]
+    }
+  }
+}

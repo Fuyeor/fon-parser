@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "lossless": true,
+  "projection": {
+    "root": {
+      "kind": "explicit-object",
+      "annotations": [],
+      "members": [
+        {
+          "kind": "binding",
+          "key": "authors",
+          "annotations": [],
+          "value": {
+            "kind": "array",
+            "items": [
+              {
+                "kind": "string",
+                "raw": "`Fuyeor`",
+                "parts": [{ "kind": "text", "text": "Fuyeor" }]
+              },
+              {
+                "kind": "string",
+                "raw": "`AI`",
+                "parts": [{ "kind": "text", "text": "AI" }]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "metadata",
+          "annotations": [],
+          "value": {
+            "kind": "object",
+            "members": [
+              {
+                "kind": "binding",
+                "key": "empty-object",
+                "annotations": [],
+                "value": { "kind": "object", "members": [] }
+              },
+              {
+                "kind": "binding",
+                "key": "tags",
+                "annotations": [],
+                "value": { "kind": "array", "items": [] }
+              },
+              {
+                "kind": "binding",
+                "key": "nested",
+                "annotations": [],
+                "value": {
+                  "kind": "object",
+                  "members": [
+                    {
+                      "kind": "binding",
+                      "key": "enabled",
+                      "annotations": [],
+                      "value": { "kind": "boolean", "value": true }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

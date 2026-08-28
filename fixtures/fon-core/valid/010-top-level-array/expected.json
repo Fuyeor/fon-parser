@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "lossless": true,
+  "projection": {
+    "root": {
+      "kind": "array",
+      "annotations": [],
+      "items": [
+        { "kind": "number", "raw": "1", "integer": true },
+        {
+          "kind": "string",
+          "raw": "`two`",
+          "parts": [{ "kind": "text", "text": "two" }]
+        },
+        {
+          "kind": "object",
+          "members": [
+            {
+              "kind": "binding",
+              "key": "three",
+              "annotations": [],
+              "value": { "kind": "boolean", "value": true }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

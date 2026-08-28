@@ -1,0 +1,4 @@
+{
+  message = `Hello, {name}!`
+  nested = `Value: {user.name}`
+}

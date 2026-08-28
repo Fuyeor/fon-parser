@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "lossless": true,
+  "projection": {
+    "root": {
+      "kind": "explicit-object",
+      "annotations": [],
+      "members": [
+        {
+          "kind": "binding",
+          "key": "package",
+          "annotations": [],
+          "value": {
+            "kind": "unknown",
+            "raw": "@fer/std",
+            "shape": "package-like"
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "version",
+          "annotations": [],
+          "value": {
+            "kind": "unknown",
+            "raw": "0.1.0",
+            "shape": "version-like"
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "range",
+          "annotations": [],
+          "value": {
+            "kind": "unknown",
+            "raw": "^0.1.0",
+            "shape": "version-like"
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "path",
+          "annotations": [],
+          "value": {
+            "kind": "unknown",
+            "raw": "./docs/index.md",
+            "shape": "path-like"
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "color",
+          "annotations": [],
+          "value": {
+            "kind": "unknown",
+            "raw": "#AEA4E4",
+            "shape": "color-like"
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "license",
+          "annotations": [],
+          "value": { "kind": "unknown", "raw": "mit", "shape": "bare-atom" }
+        },
+        {
+          "kind": "binding",
+          "key": "mode",
+          "annotations": [],
+          "value": { "kind": "enum-path", "shorthand": true, "path": ".dark" }
+        }
+      ]
+    }
+  }
+}

@@ -329,7 +329,7 @@ impl<'document> Materializer<'document> {
             }
             Value::Object(object) => self.object_members(&object.members),
             Value::Unknown(unknown) => Ok(JsonValue::String(unknown.raw.clone())),
-            Value::Regex(_) | Value::Schema(_) | Value::Error(_) => {
+            Value::Regex(_) | Value::Schema(_) | Value::Expression(_) | Value::Error(_) => {
                 Err(JsonConversionError::UnsupportedValue { kind: value.kind() })
             }
         };

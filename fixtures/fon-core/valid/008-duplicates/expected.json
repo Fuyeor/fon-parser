@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "lossless": true,
+  "projection": {
+    "root": {
+      "kind": "explicit-object",
+      "annotations": [],
+      "members": [
+        {
+          "kind": "binding",
+          "key": "key",
+          "annotations": [],
+          "value": { "kind": "number", "raw": "1", "integer": true }
+        },
+        {
+          "kind": "binding",
+          "key": "key",
+          "annotations": [],
+          "value": { "kind": "number", "raw": "2", "integer": true }
+        },
+        {
+          "kind": "binding",
+          "key": "nested",
+          "annotations": [],
+          "value": {
+            "kind": "object",
+            "members": [
+              {
+                "kind": "binding",
+                "key": "key",
+                "annotations": [],
+                "value": { "kind": "number", "raw": "3", "integer": true }
+              },
+              {
+                "kind": "binding",
+                "key": "key",
+                "annotations": [],
+                "value": { "kind": "number", "raw": "4", "integer": true }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
