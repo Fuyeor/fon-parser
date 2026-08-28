@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "lossless": true,
+  "projection": {
+    "root": {
+      "kind": "explicit-object",
+      "annotations": [
+        {
+          "name": "type",
+          "arguments": [
+            {
+              "key": null,
+              "value": {
+                "kind": "unknown",
+                "raw": "Manifest",
+                "shape": "bare-atom"
+              }
+            }
+          ]
+        }
+      ],
+      "members": [
+        {
+          "kind": "binding",
+          "key": "name",
+          "annotations": [{ "name": "required", "arguments": [] }],
+          "type": "string",
+          "value": {
+            "kind": "string",
+            "raw": "`Fuyeor`",
+            "parts": [{ "kind": "text", "text": "Fuyeor" }]
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "path",
+          "annotations": [
+            {
+              "name": "location",
+              "arguments": [
+                {
+                  "key": null,
+                  "value": { "kind": "number", "raw": "0", "integer": true }
+                },
+                {
+                  "key": "interpolate",
+                  "value": {
+                    "kind": "unknown",
+                    "raw": "flat",
+                    "shape": "bare-atom"
+                  }
+                }
+              ]
+            }
+          ],
+          "value": {
+            "kind": "unknown",
+            "raw": "./docs/index.md",
+            "shape": "path-like"
+          }
+        }
+      ]
+    }
+  }
+}

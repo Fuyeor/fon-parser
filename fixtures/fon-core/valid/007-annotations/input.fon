@@ -1,0 +1,7 @@
+#[type = Manifest]
+{
+  #[required]
+  name: string = `Fuyeor`
+  #[location = 0, interpolate = flat]
+  path = ./docs/index.md
+}

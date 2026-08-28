@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "lossless": true,
+  "projection": {
+    "root": {
+      "kind": "explicit-object",
+      "annotations": [],
+      "members": [
+        {
+          "kind": "type-declaration",
+          "key": "User",
+          "annotations": [],
+          "schema": {
+            "schemaKind": "struct",
+            "fields": [
+              { "key": "id", "type": "Uuid4", "default": null },
+              {
+                "key": "nickname",
+                "type": null,
+                "default": {
+                  "kind": "string",
+                  "raw": "`guest`",
+                  "parts": [{ "kind": "text", "text": "guest" }]
+                }
+              },
+              {
+                "key": "score",
+                "type": "i32",
+                "default": { "kind": "number", "raw": "100", "integer": true }
+              }
+            ],
+            "variants": []
+          }
+        },
+        {
+          "kind": "type-declaration",
+          "key": "Message",
+          "annotations": [],
+          "schema": {
+            "schemaKind": "enum",
+            "fields": [],
+            "variants": [
+              { "key": "quit", "type": null },
+              { "key": "move", "type": "struct { x: i32, y: i32 }" },
+              { "key": "write", "type": "string" }
+            ]
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "mode",
+          "annotations": [],
+          "type": "Option<AppMode>",
+          "value": { "kind": "enum-path", "shorthand": true, "path": ".dark" }
+        }
+      ]
+    }
+  }
+}

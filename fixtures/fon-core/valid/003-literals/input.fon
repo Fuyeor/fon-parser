@@ -1,0 +1,9 @@
+{
+  enabled = true
+  disabled = false
+  integer = -42
+  decimal = 2.5
+  text = `line\nvalue`
+  escaped = `backtick: \` and slash: \\`
+  identifier = /^[a-z0-9-]+$/i
+}

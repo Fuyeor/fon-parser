@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "lossless": true,
+  "projection": {
+    "root": {
+      "kind": "explicit-object",
+      "annotations": [],
+      "members": [
+        {
+          "kind": "binding",
+          "key": "message",
+          "annotations": [],
+          "value": {
+            "kind": "string",
+            "raw": "`Hello, {name}!`",
+            "parts": [
+              { "kind": "text", "text": "Hello, " },
+              { "kind": "interpolation", "expression": "name" },
+              { "kind": "text", "text": "!" }
+            ]
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "nested",
+          "annotations": [],
+          "value": {
+            "kind": "string",
+            "raw": "`Value: {user.name}`",
+            "parts": [
+              { "kind": "text", "text": "Value: " },
+              { "kind": "interpolation", "expression": "user.name" }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

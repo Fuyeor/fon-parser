@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "lossless": true,
+  "projection": {
+    "root": {
+      "kind": "explicit-object",
+      "annotations": [
+        {
+          "name": "type",
+          "arguments": [
+            {
+              "key": null,
+              "value": {
+                "kind": "unknown",
+                "raw": "Manifest",
+                "shape": "bare-atom"
+              }
+            }
+          ]
+        }
+      ],
+      "members": [
+        {
+          "kind": "binding",
+          "key": "name",
+          "annotations": [],
+          "value": {
+            "kind": "string",
+            "raw": "`Fuyeor`",
+            "parts": [{ "kind": "text", "text": "Fuyeor" }]
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "items",
+          "annotations": [],
+          "value": {
+            "kind": "array",
+            "items": [
+              { "kind": "number", "raw": "1", "integer": true },
+              { "kind": "number", "raw": "2", "integer": true },
+              { "kind": "number", "raw": "3", "integer": true }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

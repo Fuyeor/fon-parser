@@ -53,7 +53,7 @@ appconf: AppAppearance {
 }
 ```
 
-*Note: While the FON parser extracts raw data, type validation against the schema is handled by the specific language implementation or the Fer compiler.*
+_Note: While the FON parser extracts raw data, type validation against the schema is handled by the specific language implementation or the Fer compiler._
 
 ## Examples
 
@@ -82,3 +82,14 @@ name = @fer/std, version = 0.1.0, license = mit, authors = [`Fuyeor`, `AI`], dep
 - **[TypeScript/JavaScript](./typescript)**: Native support for Web, Node.js, and Deno.
 - **[Rust](./rust)**: High-performance, zero-copy, memory-safe implementation.
 - **[Python](./python)**: Clean and idiomatic parser for scripting and data science.
+
+## Cross-language conformance
+
+The shared [FON Core fixture suite](./fixtures/fon-core) keeps independent language implementations aligned. Rust and TypeScript runners parse the same inputs and compare language-neutral AST projections instead of implementation-private node IDs or offsets.
+
+Run the conformance checks with:
+
+```sh
+cargo test --manifest-path rust/Cargo.toml --features json --test conformance
+pnpm --dir typescript test
+```

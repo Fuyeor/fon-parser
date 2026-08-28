@@ -20,8 +20,8 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "format": "prettier --write 'src/**/*.ts' 'test/**/*.ts' README.md package.json pnpm-lock.yaml tsconfig.json .prettierrc.json",
+    "format:check": "prettier --check 'src/**/*.ts' 'test/**/*.ts' README.md package.json pnpm-lock.yaml tsconfig.json .prettierrc.json",
     "test": "vitest run",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },

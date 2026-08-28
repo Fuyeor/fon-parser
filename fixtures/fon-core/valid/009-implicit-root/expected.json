@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "lossless": true,
+  "projection": {
+    "root": {
+      "kind": "implicit-object",
+      "annotations": [],
+      "members": [
+        {
+          "kind": "binding",
+          "key": "name",
+          "annotations": [],
+          "value": {
+            "kind": "string",
+            "raw": "`Fuyeor`",
+            "parts": [{ "kind": "text", "text": "Fuyeor" }]
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "version",
+          "annotations": [],
+          "value": {
+            "kind": "unknown",
+            "raw": "0.1.0",
+            "shape": "version-like"
+          }
+        },
+        {
+          "kind": "binding",
+          "key": "license",
+          "annotations": [],
+          "value": { "kind": "enum-path", "shorthand": true, "path": ".mit" }
+        }
+      ]
+    }
+  }
+}

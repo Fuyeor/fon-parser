@@ -112,7 +112,17 @@ impl<'source> Parser<'source> {
                     children.push(cst_id);
                 }
             }
-            self.skip_separators();
+            // Reject adjacent members without a grammar-defined separator.
+            let separated = self.skip_separators();
+            if !separated && !self.at(TokenKind::Eof) && (!explicit || !self.at(TokenKind::RBrace))
+            {
+                self.diagnostics.push(Diagnostic::new(
+                    "E0103",
+                    "expected a newline or comma between members",
+                    self.current_span(),
+                ));
+                self.recover_to_member_boundary();
+            }
         }
 
         let end = if explicit {

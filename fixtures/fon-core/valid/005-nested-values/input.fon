@@ -1,0 +1,10 @@
+{
+  authors = [`Fuyeor`, `AI`]
+  metadata = {
+    empty-object = {}
+    tags = []
+    nested = {
+      enabled = true
+    }
+  }
+}

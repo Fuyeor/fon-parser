@@ -1,0 +1,13 @@
+{
+  User: struct {
+    id: Uuid4
+    nickname = `guest`
+    score: i32 = 100
+  }
+  Message: enum {
+    quit
+    move: struct { x: i32, y: i32 }
+    write: string
+  }
+  mode: Option<AppMode> = .dark
+}

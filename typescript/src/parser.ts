@@ -261,7 +261,7 @@ class Parser {
       const type = this.parseType();
       this.skipInlineTrivia();
       if (this.consume(TokenKind.Equals)) {
-        this.skipTrivia();
+        this.skipInlineTrivia();
         const value = this.parseValue();
         const member: BindingMember = {
           kind: 'binding',
@@ -309,7 +309,7 @@ class Parser {
         span: { start, end },
       });
     }
-    this.skipTrivia();
+    this.skipInlineTrivia();
     const value = this.parseValue();
     return this.addMember({
       kind: 'binding',
@@ -580,7 +580,7 @@ class Parser {
         span: { start: token.span.start, end: schema.span.end },
       });
     }
-    this.skipTrivia();
+    this.skipInlineTrivia();
     if (this.consume(TokenKind.LessThan)) {
       const argumentsList: TypeId[] = [];
       this.skipTriviaAndSeparators();
@@ -643,7 +643,7 @@ class Parser {
         this.recover(TokenKind.RightBrace);
         continue;
       }
-      this.skipTrivia();
+      this.skipInlineTrivia();
       if (kind === 'struct') {
         let typeAnnotation: TypeId | null = null;
         let defaultValue: ValueId | null = null;

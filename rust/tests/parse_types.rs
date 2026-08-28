@@ -165,7 +165,7 @@ fn preserves_enum_shorthand_and_qualified_paths() {
 #[test]
 fn parses_annotations_on_root_bindings_fields_and_variants() {
     let result = parse(
-        "#[type = Manifest] { #[required] name: string = `Fuyeor` Config: struct { #[location = 0] color: Hex } Mode: enum { #[deprecated = true] old } }",
+        "#[type = Manifest] {\n  #[required] name: string = `Fuyeor`\n  Config: struct {\n    #[location = 0] color: Hex\n  }\n  Mode: enum {\n    #[deprecated = true] old\n  }\n}",
     );
 
     assert!(
